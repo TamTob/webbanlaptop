@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <TITLE>WebBanLaptop - Vương Tấn Tâm</TITLE>
+  <link rel="stylesheet"  href="css/anh.css">
+</head>
+<body>
+  <h1>Bộ sưu tập ảnh</h1>
+  <div class="controls">
+    <button  onclick="prevImage()">Prev</button>
+    <img class="image-container" id="image" src="" alt="Ảnh">
+    <button onclick="nextImage()">Next</button>
+  </div>
+  <div>
+    <span class="controls" id="image-position" class="image-position"></span>
+  </div>
+  <script>
+    var images = [
+      "images/a1.png","images/a2.png",
+      "images/a3.png","images/a4.png",
+      "images/a5.png","images/a6.png",
+      "images/a7.png","images/a8.png",
+      "images/a9.png","images/a10.png",
+      "images/a11.png","images/a12.png",
+      "images/a13.png","images/a14.png",
+      "images/a15.png","images/a16.png",
+      "images/a17.png","images/a18.png",
+      "images/a19.png","images/a20.png"
+    ];
+    var currentPosition = 0;
+    var imageElement = document.getElementById("image");
+    var imagePositionElement = document.getElementById("image-position");
+    function updateImage() {
+      imageElement.src = images[currentPosition];
+      imagePositionElement.textContent = "Ảnh " + (currentPosition + 1) + " / " + images.length;
+    }
+    function nextImage() {
+      currentPosition++;
+      if (currentPosition >= images.length) {
+        currentPosition = 0;
+      }
+      updateImage();
+    }
+    function prevImage() {
+      currentPosition--;
+      if (currentPosition < 0) {
+        currentPosition = images.length - 1;
+      }
+      updateImage();
+    }
+    updateImage();
+  </script>
+</body>
+</html>

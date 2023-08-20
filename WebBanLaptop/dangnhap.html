@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <TITLE>WebBanLaptop - Vương Tấn Tâm</TITLE>
+  <link rel="stylesheet"  href="css/dangnhap.css">
+</head>
+<body>
+  <h1>Đăng kí thành viên</h1>
+  <form id="student-form" onsubmit="validateForm(event)">
+    <div class="form-group">
+      <label for="student-id">Mã sinh viên:</label>
+      <input type="text" id="student-id" name="student-id">
+    </div>
+    <div class="form-group">
+      <label for="full-name">Họ và tên:</label>
+      <input type="text" id="full-name" name="full-name">
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="text" id="email" name="email">
+    </div>
+    <div class="form-group">
+      <label for="gender">Giới tính:</label>
+      <input id="gender" type="radio" id="male" name="gender" value="nam" required>Nam
+      <input id="gender" type="radio" id="female" name="gender" value="nữ" required>Nữ
+    </div>
+    <div class="form-group">
+      <label for="hobbies">Sở thích:</label>
+      <input type="checkbox" id="hobbies" name="hobbies" value="book">Đọc sách
+      <input type="checkbox" id="hobbies" name="hobbies" value="sport">Thể thao
+      <input type="checkbox" id="hobbies" name="hobbies" value="music">Âm nhạc
+      <input type="checkbox" id="hobbies" name="hobbies" value="travel">Du lịch
+      <input type="checkbox" id="hobbies" name="hobbies" value="khac">Khác
+    </div>
+    <div class="form-group">
+      <label for="nationality">Quốc tịch:</label>
+      <select id="nationality" name="nationality" required>
+        <option value=""></option>
+        <option value="vn">Việt Nam</option>
+        <option value="us">United States</option>
+        <option value="uk">United Kingdom</option>
+        <option value="fr">France</option>
+        <option value="jp">Japan</option>
+        <option value="ch">China</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="note">Ghi chú:</label>
+      <textarea id="note" name="note"></textarea>
+    </div>
+    <div class="form-group">
+      <input type="submit" value="Đăng ký">
+    </div>
+  </form>
+
+  <script>
+    function validateForm(event) {
+      event.preventDefault();
+
+      var studentId = document.getElementById("student-id").value.trim();
+      var fullName = document.getElementById("full-name").value.trim();
+      var email = document.getElementById("email").value.trim();
+      // var gender = document.getElementById("gender").value.trim();
+      // var hobbies = document.getElementById("hobbies").value.trim();
+      // var nationality = document.getElementById("nationality").value.trim();
+      // var note = document.getElementById("note").value.trim();
+      var isValid = true;
+
+      // Kiểm tra và hiển thị màu vàng cho các ô nhập liệu không hợp lệ
+      if (!studentId) {
+        document.getElementById("student-id").classList.add("invalid");
+        isValid = false;
+      } else {
+        document.getElementById("student-id").classList.remove("invalid");
+      }
+
+      if (!fullName) {
+        document.getElementById("full-name").classList.add("invalid");
+        isValid = false;
+      } else {
+        document.getElementById("full-name").classList.remove("invalid");
+      }
+
+      if (!email || !email.includes("@") || !email.includes(".")) {
+        document.getElementById("email").classList.add("invalid");
+        isValid = false;
+      } else {
+        document.getElementById("email").classList.remove("invalid");
+      }
+      if (isValid) {
+        saveStudentData(studentId, fullName, email, gender);
+      }
+    }
+
+    function saveStudentData(studentId, fullName, email, gender, hobbies, nationality, note) {
+      // Thực hiện lưu dữ liệu sinh viên vào cơ sở dữ liệu hoặc file
+      console.log("Mã sinh viên:", studentId);
+      console.log("Họ và tên:", fullName);
+      console.log("Email:", email);
+      console.log("Giới tính:", gender);
+      console.log("Sở thích:", hobbies);
+      console.log("Quốc tịch:", nationality);
+      console.log("Ghi chú:", note);
+    }
+  </script>
+</body>
+</html>

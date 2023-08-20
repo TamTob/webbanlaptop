@@ -1,0 +1,38 @@
+h1{
+  color: red;
+  text-align: center;
+}
+form {
+  margin: 0 auto;
+  width: 400px;
+  padding: 20px;
+  background-color: #A1C2F1;
+  border-radius: 5px;
+}
+.form-group {
+  margin-bottom: 20px;
+}
+.form-group label {
+  display: block;
+}
+.form-group input[type="text"],
+.form-group [name="nationality"],
+.form-group textarea {
+  width: 350px;
+  padding: 5px;
+}
+.form-group input[type="submit"] {
+  padding: 10px 20px;
+  background-color: #0A6EBD;
+  color: #E7CEA6;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+}
+.form-group input[type="submit"]:hover {
+  background-color: #45a049;
+  border-radius: 50%;
+}
+.invalid {
+  background-color: yellow;
+}

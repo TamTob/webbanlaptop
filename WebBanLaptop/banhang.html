@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <TITLE>WebBanLaptop - Vương Tấn Tâm</TITLE>
+  <link rel="stylesheet"  href="css/banhang.css">
+  <script>
+    function calculateTotal() {
+      var total = 0;
+      var checkboxes = document.getElementsByName('quantity[]');
+      var quantityInputs = document.getElementsByName('quantity_input[]');
+      var prices = [10000000, 5000000, 6000000, 1000000, 3000000]; // Đơn giá của các sản phẩm
+
+      for (var i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].checked) {
+          var quantity = parseFloat(quantityInputs[i].value);
+          var price = prices[i];
+          var productTotal = quantity * price;
+          total += productTotal;
+          document.getElementById('productTotal_' + i).textContent = productTotal.toLocaleString() + ' VNĐ';
+        } 
+        else {
+          document.getElementById('productTotal_' + i).textContent = '';
+        }
+      }
+    document.getElementById('totalPrice').textContent = total.toLocaleString() + ' VNĐ';
+    }
+    function filterProducts() {
+      var priceOption = document.getElementById('priceOption').value;
+      var prices = [10000000, 5000000, 6000000, 1000000, 3000000]; // Đơn giá của các sản phẩm
+      for (var i = 0; i < prices.length; i++) {
+        var row = document.getElementById('productRow_' + i);
+          if (priceOption === 'cheap' && prices[i] >= 3000000) {
+            row.style.display = 'none';
+          } 
+          else if (priceOption === 'medium' && (prices[i] < 3000000 || prices[i] > 7000000)) {
+            row.style.display = 'none';
+          } 
+          else if (priceOption === 'expensive' && prices[i] < 10000000) {
+            row.style.display = 'none';
+          } 
+          else {
+            row.style.display = '';
+          }
+      }
+    }
+  </script>
+</head>
+<body>
+<div class="container">
+  <h1>BÁN LAPTOP</h1>
+  <div class="center">
+    <label for="priceOption">Chọn mức giá:</label>
+    <select id="priceOption" onchange="filterProducts()">
+      <option value="all">Tất cả</option>
+      <option value="cheap">Rẻ</option>
+      <option value="medium">Trung bình</option>
+      <option value="expensive">Đắt</option>
+    </select>
+  </div>
+  <br>
+  <table>
+    <tr>
+      <th>Chọn</th>
+      <th>Tên hãng laptop</th>
+      <th>Giá phụ kiện</th>
+      <th>Số lượng</th>
+      <th>Thành tiền</th>
+    </tr>
+    <tr id="productRow_0">
+      <td><input type="checkbox" name="quantity[]" value="Asus" onclick="calculateTotal()"></td>
+      <td>Asus</td>
+      <td>10,000,000 VNĐ</td>
+      <td><input type="number" name="quantity_input[]" min="0" oninput="calculateTotal()"></td>
+      <td id="productTotal_0"></td>
+    </tr>
+    <tr id="productRow_1">
+      <td><input type="checkbox" name="quantity[]" value="Acer" onclick="calculateTotal()"></td>
+      <td>Acer</td>
+      <td>5,000,000 VNĐ</td>
+      <td><input type="number" name="quantity_input[]" min="0" oninput="calculateTotal()"></td>
+      <td id="productTotal_1"></td>
+    </tr>
+    <tr id="productRow_2">
+      <td><input type="checkbox" name="quantity[]" value="Lenovo" onclick="calculateTotal()"></td>
+      <td>Lenovo</td>
+      <td>6,000,000 VNĐ</td>
+      <td><input type="number" name="quantity_input[]" min="0" oninput="calculateTotal()"></td>
+      <td id="productTotal_2"></td>
+    </tr>
+    <tr id="productRow_3">
+      <td><input type="checkbox" name="quantity[]" value="Dell" onclick="calculateTotal()"></td>
+      <td>Dell</td>
+      <td>1,000,000 VNĐ</td>
+      <td><input type="number" name="quantity_input[]" min="0" oninput="calculateTotal()"></td>
+      <td id="productTotal_3"></td>
+    </tr>
+    <tr id="productRow_4">
+      <td><input type="checkbox" name="quantity[]" value="MSI" onclick="calculateTotal()"></td>
+      <td>MSI</td>
+      <td>3,000,000 VNĐ</td>
+      <td><input type="number" name="quantity_input[]" min="0" oninput="calculateTotal()"></td>
+      <td id="productTotal_4"></td>
+    </tr>
+    <tr>
+      <td colspan="4" style="text-align:center;"><strong>Tổng cộng:</strong></td>
+      <td id="totalPrice"></td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>
